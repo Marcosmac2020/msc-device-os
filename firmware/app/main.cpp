@@ -2,10 +2,10 @@
 
 #include <Arduino.h>
 
-#include "../bootstrap/device_identity.h"
-#include "../storage/nvs_storage.h"
-#include "../wifi/wifi_manager.h"
-#include "../ble/ble_provisioning.h"
+#include "bootstrap/device_identity.h"
+#include "storage/nvs_storage.h"
+#include "wifi/wifi_manager.h"
+#include "ble/ble_provisioning.h"
 
 void setup()
 {
