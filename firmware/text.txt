@@ -1,0 +1,15 @@
+firmware
+│
+├── app
+│   └── main.cpp
+│
+├── bootstrap
+│
+├── ble
+│
+├── storage
+│
+├── wifi
+│
+└── config
+    └── device_config.h

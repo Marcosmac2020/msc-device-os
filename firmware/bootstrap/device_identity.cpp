@@ -20,7 +20,9 @@ String DeviceIdentity::getDeviceId()
 
 String DeviceIdentity::getFirmwareVersion()
 {
-    return "0.1.0";
+    #include "../config/device_config.h"
+
+return MSC_FIRMWARE_VERSION;
 }
 
 String DeviceIdentity::getBoardName()

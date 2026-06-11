@@ -1,29 +1,89 @@
-// MSC Device OS - BLE Provisioning Header
+// MSC Device OS - BLE Provisioning Runtime
 
-#ifndef BLE_PROVISIONING_H
-#define BLE_PROVISIONING_H
+#include "ble_provisioning.h"
 
-#include <Arduino.h>
+#include "../storage/nvs_storage.h"
 
-class BLEProvisioning
+bool BLEProvisioning::provisioned = false;
+
+String BLEProvisioning::ssid = "";
+String BLEProvisioning::password = "";
+String BLEProvisioning::token = "";
+
+void BLEProvisioning::begin()
 {
-public:
-    static void begin();
+Serial.println();
+Serial.println("==================================");
+Serial.println(" MSC Device OS");
+Serial.println(" BLE Provisioning Started");
+Serial.println("==================================");
 
-    static bool isProvisioned();
+```
+Serial.println("Advertising BLE Service:");
+Serial.println("MSC-SETUP");
 
-    static String getSSID();
+/*
+    Próxima implementação:
 
-    static String getPassword();
+    NimBLEDevice::init("MSC-SETUP");
 
-    static String getToken();
+    Service:
+    MSC_SETUP_SERVICE
 
-private:
-    static bool provisioned;
+    Characteristics:
+    WIFI_SSID
+    WIFI_PASSWORD
+    DEVICE_TOKEN
+    DEVICE_STATUS
 
-    static String ssid;
-    static String password;
-    static String token;
-};
+    Receber credenciais do App
+    Salvar em NVS
+    Conectar WiFi
+*/
+```
 
-#endif
+}
+
+bool BLEProvisioning::isProvisioned()
+{
+return provisioned;
+}
+
+void BLEProvisioning::saveCredentials(
+const String& ssid,
+const String& password,
+const String& token)
+{
+NVSStorage::begin();
+
+```
+NVSStorage::saveSSID(ssid);
+
+NVSStorage::savePassword(password);
+
+NVSStorage::saveToken(token);
+
+Serial.println();
+Serial.println("Credentials stored.");
+
+delay(1000);
+
+ESP.restart();
+```
+
+}
+
+String BLEProvisioning::getSSID()
+{
+return ssid;
+}
+
+String BLEProvisioning::getPassword()
+{
+return password;
+}
+
+String BLEProvisioning::getToken()
+{
+return token;
+}

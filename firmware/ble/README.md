@@ -2,27 +2,63 @@
 
 ## Objetivo
 
-Permitir configuração inicial do dispositivo sem cabo USB.
+Permitir configuração inicial do ESP32-S3 sem cabo USB.
 
-## Dados Recebidos
+## Funcionalidades
 
-* SSID
-* Password
-* Token
+* Descoberta BLE
+* Recebimento de SSID
+* Recebimento de senha WiFi
+* Recebimento de Token
+* Armazenamento em NVS
+* Inicialização automática do WiFi
+
+## Serviço BLE
+
+Nome:
+
+MSC-SETUP
+
+UUID:
+
+6E400001-B5A3-F393-E0A9-E50E24DCCA9E
+
+## Characteristics
+
+### WIFI_SSID
+
+Recebe o nome da rede WiFi.
+
+### WIFI_PASSWORD
+
+Recebe a senha da rede WiFi.
+
+### DEVICE_TOKEN
+
+Recebe o token do dispositivo.
+
+### DEVICE_STATUS
+
+Retorna o estado atual do provisionamento.
 
 ## Fluxo
 
-1. ESP inicia BLE.
-2. Aplicativo encontra dispositivo.
-3. Credenciais são enviadas.
-4. Dados são gravados em NVS.
-5. ESP conecta ao Wi-Fi.
-6. BLE é encerrado.
+iPhone / Android
+↓
+BLE
+↓
+ESP32-S3
+↓
+NVS Storage
+↓
+WiFi Manager
+↓
+Cloud Registry
 
-## Próxima Versão
+## Próximas Versões
 
+* NimBLE-Arduino
+* Pairing Seguro
 * Criptografia
-* Pairing seguro
 * OTA via BLE
-
-
+* Device Discovery
